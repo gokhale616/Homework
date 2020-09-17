@@ -17,7 +17,7 @@ test_with_iota <- function(c, param_grid = my_grid) {
   res <- param_grid[c, ] %.>% 
     mutate(.,fake_res = (epsilon2 + t_intro) / rpois(1, iota))  
     
-    return(res)
+  return(res)
   
 }
 
@@ -28,6 +28,7 @@ res_df <- mclapply(1:nrow(my_grid), test_with_iota, mc.cores = 3) %.>%
 
 
 # Number of NANs produced -generates the number of NAN's
+# printed - not needed
 res_df %.>% 
   mutate(., infinte_here = is.infinite(fake_res)) %.>% 
   select(infinte_here) %.>% 
